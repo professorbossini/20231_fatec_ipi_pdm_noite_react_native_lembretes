@@ -1,20 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react'
+import {
+  Button,
+  StyleSheet,
+  TextInput, 
+  View 
+} from 'react-native';
 
 export default function App() {
+  const [lembrete, setLembrete] = useState('')
+  const capturarLembrete = (lembreteDigitado) => {
+    setLembrete(lembreteDigitado)
+  }
+  const adicionarLembrete = () => {
+    console.log(lembrete)
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View>
+        <TextInput 
+          style={styles.lembreteTextInput}
+          placeholder='Desejo lembrar...'
+          onChangeText={capturarLembrete}
+          value={lembrete} 
+        />
+        <Button 
+          title="OK"
+          onPress={adicionarLembrete}
+        />
+      </View>
+      <View>
+
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 40,
+    width: '100%'
   },
-});
+  lembreteTextInput: {
+    borderBottomColor: '#CCC',
+    borderBottomWidth: 1,
+    padding: 12,
+    textAlign: 'center',
+    outlineStyle: 'none',
+    marginBottom: 4
+  }
+})
+
+
