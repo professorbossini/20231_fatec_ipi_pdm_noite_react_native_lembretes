@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import {
   Button,
+  FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput, 
@@ -34,14 +36,15 @@ export default function App() {
           onPress={adicionarLembrete}
         />
       </View>
-      <View>
-          {/* [Comprar um abacate, ir ao cinema] => [<View><Text>Comprar um abacate</Text></View>, <View><Text>Ir ao cinema</Text></View>] */}
-          {
-            lembretes.map((l) => (
-              <View style={styles.itemNaLista}><Text>{l}</Text></View>
-            ))
-          }
-      </View>
+      <FlatList 
+        data={lembretes}
+        renderItem={(lembrete) => (
+          <View style={styles.itemNaLista}>
+              <Text>{lembrete.item}</Text>
+            </View>
+        )}
+      />
+
     </View>
   );
 }
@@ -74,3 +77,12 @@ const styles = StyleSheet.create({
 })
 
 
+
+    // <ScrollView>
+    //     {/* [Comprar um abacate, ir ao cinema] => [<View><Text>Comprar um abacate</Text></View>, <View><Text>Ir ao cinema</Text></View>] */}
+    //     {
+    //       lembretes.map((l) => (
+    //         <View style={styles.itemNaLista}><Text>{l}</Text></View>
+    //       ))
+    //     }
+    // </ScrollView>
